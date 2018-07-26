@@ -110,11 +110,19 @@ public class App {
         String xpathWithPeriod = ".//*[@id=\"menu-item-374\"]/a";
         driver.get(url);
         driver.findElement(By.xpath(xpathWithPeriod)).click();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        // Go back to Home Page
+        driver.navigate().back();
+
+        // Go forward to Registration page
+        driver.navigate().forward();
+
+        // Go back to Home page
+        driver.navigate().to(url);
+        // Refresh browser
+        driver.navigate().refresh();
+
+        // Close browser
         driver.close();
 
     }

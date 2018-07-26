@@ -8,6 +8,12 @@ import utiles.Util;
 
 public class App {
     private static WebDriver driver;
+
+    /** Menu constants */
+    private static final char EXIT = 'q';
+    private static final char CHANGE_DRIVER = 'd';
+    private static final char RETURN = 'r';
+
     private static final String FIREFOX = "FIREFOX";
     private static final String CHROME = "CHROME";
     private static String driversName;
@@ -33,7 +39,10 @@ public class App {
                     case '3':
                         navigationExercise(driversName);
                         break;
-                    case 'Q':
+                    case CHANGE_DRIVER:
+                        showChangeDriverMenu();
+                        break;
+                    case EXIT:
                         close = true;
                         break;
                 }
@@ -48,14 +57,41 @@ public class App {
         int opt;
         boolean show = true;
         while (show) {
-
+            changeDriverMenu();
+            try {
+                opt = Util.readChar("ENTER OPTION: ");
+                switch (opt) {
+                    case '1':
+                        driversName = CHROME;
+                        show = false;
+                        break;
+                    case '2':
+                        driversName = FIREFOX;
+                        show = false;
+                        break;
+                    case RETURN:
+                        show = false;
+                        break;
+                    default:
+                        System.out.printf("Enter a valid option");
+                        break;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }
 
-    private static void changeDriver() {
-
+    private static void changeDriverMenu() {
+        System.out.println("**** CHANGE SELENIUM WEB DRIVER *******");
+        System.out.println("-- DRIVERS --");
+        System.out.println("1) CHROME");
+        System.out.println("2) FIREFOX");
+        System.out.println(RETURN  + ") RETURN");
     }
+
+
 
     /**
      *Launch new Browser
@@ -69,6 +105,7 @@ public class App {
      */
     private static void navigationExercise(String driverName) {
         //*[@id="menu-item-374"]/a
+        driver = DriverFactory.getDriver(driverName);
         String url = "http://demoqa.com/";
         String xpathWithPeriod = ".//*[@id=\"menu-item-374\"]/a";
         driver.get(url);
@@ -137,6 +174,7 @@ public class App {
 
          String xpathChrome = "//*[@id=\"tabs-1\"]/div/p/a";
          String xpathFirefox = "/html/body/div[1]/div/div[1]/main/article/div/div/div[1]/div/p/a";
+         driver = DriverFactory.getDriver(driverName);
          driver.get("http://demoqa.com/frames-and-windows/");
          driver.findElement(By.xpath(xpathChrome)).click();
          try {
@@ -153,7 +191,8 @@ public class App {
          System.out.println("1) Practice Exercise – 1");
          System.out.println("2) Practice Exercise – 2");
          System.out.println("3) Practice Navigation Exercise – 1");
-         System.out.println("Q) Exit");
+         System.out.println(CHANGE_DRIVER + ") Change driver");
+         System.out.println(EXIT + ") Exit");
 
      }
 }

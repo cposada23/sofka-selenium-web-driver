@@ -54,6 +54,9 @@ public class App {
                     case '9':
                         Exercices.tablesExercise2(driversName);
                         break;
+                    case 'w':
+                        Exercices.waitExercise(driversName);
+                        break;
                     case CHANGE_DRIVER:
                         showChangeDriverMenu();
                         break;
@@ -118,6 +121,7 @@ public class App {
         System.out.println("7) Practice Drops downs and selects Exercise – 2");
         System.out.println("8) Tables - Exercise - 1");
         System.out.println("9) Tables - Exercise - 2");
+        System.out.println("w) WAIT EXERCISE");
         System.out.println(CHANGE_DRIVER + ") Change driver");
         System.out.println(EXIT + ") Exit");
     }

@@ -1,14 +1,44 @@
 import driverFactory.DriverFactory;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.Time;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Exercices {
     private static WebDriver driver;
+
+    /**
+     * 1) Launch new Browser
+     *
+     * 2) Open URL “http://toolsqa.wpengine.com/automation-practice-switch-windows/”
+     *
+     * 3) Click on the Button “Timing Alert”
+     *
+     * 4) Accept the Alert (Alert will take 3 second to get displayed, Use WebDriverWait to wait for it)
+     */
+
+    public static void waitExercise(String driverName) {
+        driver = DriverFactory.getDriver(driverName);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.id("timingAlert")).click();
+
+        System.out.println("[TIMING ALERT TRIGGER]");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+        alert.accept();
+        System.out.println("[ALERT ACCEPTED]");
+        closeDriver();
+    }
 
     /**
      * TABLES

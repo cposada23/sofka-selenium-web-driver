@@ -1,3 +1,8 @@
+import exercises.DragAndDrop;
+import exercises.MouseHover;
+import exercises.SwitchCommands;
+import exercises.Waits;
+import org.openqa.selenium.support.ui.Wait;
 import utiles.Util;
 
 
@@ -55,7 +60,25 @@ public class App {
                         Exercices.tablesExercise2(driversName);
                         break;
                     case 'w':
-                        Exercices.waitExercise(driversName);
+                        Exercices.tablesExercise2(driversName);
+                        break;
+                    case 'f':
+                        Waits.fluentWait1(driversName);
+                        break;
+                    case 'g':
+                        Waits.fluentWait2(driversName);
+                        break;
+                    case 's':
+                        SwitchCommands.switchExercise1(driversName);
+                        break;
+                    case 'x':
+                        SwitchCommands.switchExercise2_2(driversName);
+                        break;
+                    case 'v':
+                        DragAndDrop.dragAndDrop1(driversName);
+                        break;
+                    case 'm':
+                        MouseHover.mouseHover(driversName);
                         break;
                     case CHANGE_DRIVER:
                         showChangeDriverMenu();
@@ -121,7 +144,13 @@ public class App {
         System.out.println("7) Practice Drops downs and selects Exercise – 2");
         System.out.println("8) Tables - Exercise - 1");
         System.out.println("9) Tables - Exercise - 2");
-        System.out.println("w) WAIT EXERCISE");
+        System.out.println("z) FLUENT WAIT - COLOR");
+        System.out.println("g) FLUENT WAIT - ELEMENT");
+        System.out.println("f) WAIT EXERCISE");
+        System.out.println("s) SWITCH EXERCISES -- 1 ");
+        System.out.println("x) SWITCH EXERCISES -- 2 ");
+        System.out.println("v) DRAG AND DROP ");
+        System.out.println("m) MOUSE DRIVER ");
         System.out.println(CHANGE_DRIVER + ") Change driver");
         System.out.println(EXIT + ") Exit");
     }
